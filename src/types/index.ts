@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type TileCategory =
   | "ocean-wave"
   | "forest-fern"
@@ -18,8 +20,8 @@ export interface Tile {
 
   price: number;
 
-  preview: string;
-  pattern: string;
+  preview: StaticImageData;
+  pattern: StaticImageData;
 
   quantity: number;
 }

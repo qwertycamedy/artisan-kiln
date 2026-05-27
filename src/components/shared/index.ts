@@ -1,2 +1,9 @@
 export { Header } from "./header";
 export { Hero } from "./hero";
+export { TilesMain } from "./tiles_main";
+export { CartPanel } from "./cart/cart_panel";
+export { CartTable } from "./cart/cart_table";
+export { DesignTool } from "./design_tool/design_tool";
+export { DesignGrid } from "./design_tool/design_grid";
+export { TilePalette } from "./design_tool/tile_palette";
+export { CheckoutSidebar } from "./checkout_sidebar";

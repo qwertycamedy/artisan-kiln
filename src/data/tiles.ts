@@ -1,4 +1,8 @@
 import { Tile } from "@/types";
+import tile_1 from "@/assets/img/tile_1.jpg";
+import tile_2 from "@/assets/img/tile_2.jpg";
+import tile_3 from "@/assets/img/tile_3.jpg";
+import tile_4 from "@/assets/img/tile_4.jpg";
 
 export const initialTiles: Tile[] = [
   {
@@ -9,8 +13,8 @@ export const initialTiles: Tile[] = [
 
     price: 28,
 
-    preview: "/tile_1.jpg",
-    pattern: "/tile_1.jpg",
+    preview: tile_1,
+    pattern: tile_1,
 
     quantity: 150,
   },
@@ -23,8 +27,8 @@ export const initialTiles: Tile[] = [
 
     price: 30,
 
-    preview: "/tile_2.jpg",
-    pattern: "/tile_2.jpg",
+    preview: tile_2,
+    pattern: tile_2,
 
     quantity: 75,
   },
@@ -37,8 +41,8 @@ export const initialTiles: Tile[] = [
 
     price: 26,
 
-    preview: "/tile_3.jpg",
-    pattern: "/tile_3.jpg",
+    preview: tile_3,
+    pattern: tile_3,
 
     quantity: 200,
   },
@@ -51,8 +55,8 @@ export const initialTiles: Tile[] = [
 
     price: 29,
 
-    preview: "/tile_4.jpg",
-    pattern: "/tile_4.jpg",
+    preview: tile_4,
+    pattern: tile_4,
 
     quantity: 50,
   },
