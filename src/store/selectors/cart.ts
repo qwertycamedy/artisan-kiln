@@ -4,7 +4,7 @@ export const selectCartItems = (state: RootState) => state.cart.items;
 
 export const selectSubtotal = (state: RootState) => {
   return state.cart.items.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    return total + item.tile.price * item.quantity;
   }, 0);
 };
 

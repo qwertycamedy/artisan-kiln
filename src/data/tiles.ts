@@ -15,8 +15,6 @@ export const initialTiles: Tile[] = [
 
     preview: tile_1,
     pattern: tile_1,
-
-    quantity: 150,
   },
 
   {
@@ -29,8 +27,6 @@ export const initialTiles: Tile[] = [
 
     preview: tile_2,
     pattern: tile_2,
-
-    quantity: 75,
   },
 
   {
@@ -43,8 +39,6 @@ export const initialTiles: Tile[] = [
 
     preview: tile_3,
     pattern: tile_3,
-
-    quantity: 200,
   },
 
   {
@@ -57,7 +51,5 @@ export const initialTiles: Tile[] = [
 
     preview: tile_4,
     pattern: tile_4,
-
-    quantity: 50,
   },
 ];

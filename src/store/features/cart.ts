@@ -1,20 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "@/store";
 
-import { Tile } from "@/types";
-import { initialTiles } from "@/data";
+import { CartItem, Tile } from "@/types";
+
+import { initialTiles } from "@/data/tiles";
 
 interface CartState {
-  items: Tile[];
+  items: CartItem[];
 }
 
 const initialState: CartState = {
-  items: initialTiles,
-};
+  items: [
+    {
+      tile: initialTiles[0],
+      quantity: 150,
+    },
 
-type UpdateQuantityPayload = {
-  tileId: string;
-  quantity: number;
+    {
+      tile: initialTiles[1],
+      quantity: 75,
+    },
+
+    {
+      tile: initialTiles[2],
+      quantity: 200,
+    },
+  ],
 };
 
 export const cartSlice = createSlice({
@@ -23,45 +33,82 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    increaseQuantity: (state, action: PayloadAction<string>) => {
-      const item = state.items.find((item) => item.id === action.payload);
+    addTileToCart: (
+      state,
+      action: PayloadAction<Tile>
+    ) => {
+      const existingItem =
+        state.items.find(
+          (item) =>
+            item.tile.id === action.payload.id
+        );
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+
+        return;
+      }
+
+      state.items.push({
+        tile: action.payload,
+        quantity: 1,
+      });
+    },
+
+    increaseQuantity: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      const item = state.items.find(
+        (item) =>
+          item.tile.id === action.payload
+      );
 
       if (!item) return;
 
       item.quantity += 1;
     },
 
-    decreaseQuantity: (state, action: PayloadAction<string>) => {
-      const item = state.items.find((item) => item.id === action.payload);
+    decreaseQuantity: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      const item = state.items.find(
+        (item) =>
+          item.tile.id === action.payload
+      );
 
       if (!item) return;
 
-      if (item.quantity <= 1) return;
+      if (item.quantity <= 1) {
+        state.items = state.items.filter(
+          (item) =>
+            item.tile.id !== action.payload
+        );
+
+        return;
+      }
 
       item.quantity -= 1;
     },
 
-    updateQuantity: (state, action: PayloadAction<UpdateQuantityPayload>) => {
-      const { tileId, quantity } = action.payload;
-
-      const item = state.items.find((item) => item.id === tileId);
-
-      if (!item) return;
-
-      item.quantity = quantity;
-    },
-
-    removeItem: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+    removeItem: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.items = state.items.filter(
+        (item) =>
+          item.tile.id !== action.payload
+      );
     },
   },
 });
 
 export const {
+  addTileToCart,
   increaseQuantity,
   decreaseQuantity,
-  updateQuantity,
   removeItem,
 } = cartSlice.actions;
-export const cartSel = (state: RootState) => state.cart;
+
 export default cartSlice.reducer;

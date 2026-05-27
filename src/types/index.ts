@@ -22,12 +22,11 @@ export interface Tile {
 
   preview: StaticImageData;
   pattern: StaticImageData;
-
-  quantity: number;
 }
 
 export interface CartItem {
-  tileId: string;
+  tile: Tile;
+
   quantity: number;
 }
 

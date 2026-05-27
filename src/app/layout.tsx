@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/store/provider";
+import { Footer, Header } from "@/components/shared";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,9 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${oswald.variable} bg-cream text-ink`}
+        className={`${inter.variable} ${oswald.variable} bg-cream text-ink flex flex-col flex-1 min-h-full`}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <Header />
+          <main className="flex flex-1 flex-col p-4 md:p-8">{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
