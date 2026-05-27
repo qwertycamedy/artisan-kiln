@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google";
+import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/store/provider";
 import { Footer, Header } from "@/components/shared";
 
-const inter = Inter({
+const comfortaa = Comfortaa({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const oswald = Oswald({
-  subsets: ["latin"],
-  variable: "--font-oswald",
+  variable: "--font-comfortaa",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${oswald.variable} bg-cream text-ink flex flex-col flex-1 min-h-full`}
+        className={`${comfortaa.className} bg-cream text-ink flex flex-col flex-1 min-h-full`}
       >
         <StoreProvider>
           <Header />

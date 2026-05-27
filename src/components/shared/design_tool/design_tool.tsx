@@ -5,9 +5,11 @@ import { Panel } from "@/components/ui";
 import { placeTile } from "@/store/features/design";
 import { useAppDispatch } from "@/hooks";
 import { DesignGrid, TilePalette } from "@/components/shared";
+import { useId } from "react";
 
 export const DesignTool = () => {
   const dispatch = useAppDispatch();
+  const dndId = useId();
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -37,7 +39,7 @@ export const DesignTool = () => {
         <p className="mt-2 text-sm">Drag tiles into the grid.</p>
       </div>
 
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext id={dndId} onDragEnd={handleDragEnd}>
         <div className="grid gap-6 xl:grid-cols-[1fr_180px]">
           <DesignGrid />
 

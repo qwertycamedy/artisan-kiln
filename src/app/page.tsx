@@ -2,7 +2,6 @@ import {
   CartPanel,
   CheckoutSidebar,
   DesignTool,
-  Header,
   Hero,
   TilesMain,
 } from "@/components/shared";

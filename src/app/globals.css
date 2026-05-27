@@ -11,8 +11,8 @@
   --color-border: #1f1f1f;
 
   /* Шрифты (Font Families) */
-  --font-heading: var(--font-oswald);
-  --font-body: var(--font-inter);
+  --font-heading: var(--font-comfortaa);
+  --font-body: var(--font-comfortaa);
 
   /* Тени (Box Shadows) */
   --shadow-panel: 4px 4px 0px #1f1f1f;

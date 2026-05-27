@@ -8,6 +8,9 @@ import { FaPaypal, FaApple } from "react-icons/fa";
 import { checkoutSchema, CheckoutSchema } from "@/utils";
 import { FormInput } from "@/components/ui";
 import { SuccessModal, LoadingButton } from "@/components/shared";
+import { resetCart } from "@/store/features/cart";
+import { resetGrid } from "@/store/features/design";
+import { useAppDispatch } from "@/hooks";
 
 const paymentMethods = [
   {
@@ -36,12 +39,14 @@ const paymentMethods = [
 ];
 
 export const CheckoutForm = () => {
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
   const {
     control,
     watch,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CheckoutSchema>({
     resolver: zodResolver(checkoutSchema),
@@ -66,11 +71,13 @@ export const CheckoutForm = () => {
   const onSubmit = async (data: CheckoutSchema) => {
     try {
       setLoading(true);
-
+      
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      console.log(data);
-
+      dispatch(resetCart());
+      dispatch(resetGrid());
+      reset();
+      
       setSuccessOpen(true);
     } finally {
       setLoading(false);
@@ -80,7 +87,7 @@ export const CheckoutForm = () => {
   return (
     <>
       <SuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
-        
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-4">
           <FormInput
