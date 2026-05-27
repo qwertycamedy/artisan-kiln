@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  /* Цвета (Colors) */
+  --color-cream: #f5f1e8;
+  --color-navy: #3d4b7a;
+  --color-terracotta: #d2875c;
+  --color-sage: #7fa38a;
+  --color-gold: #d6b35a;
+  --color-ink: #1f1f1f;
+  --color-border: #1f1f1f;
+
+  /* Шрифты (Font Families) */
+  --font-heading: var(--font-oswald);
+  --font-body: var(--font-inter);
+
+  /* Тени (Box Shadows) */
+  --shadow-panel: 4px 4px 0px #1f1f1f;
+}
+
 * {
   box-sizing: border-box;
 }
