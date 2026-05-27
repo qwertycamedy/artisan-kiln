@@ -6,4 +6,5 @@ export { CartTable } from "./cart/cart_table";
 export { DesignTool } from "./design_tool/design_tool";
 export { DesignGrid } from "./design_tool/design_grid";
 export { TilePalette } from "./design_tool/tile_palette";
-export { CheckoutSidebar } from "./checkout_sidebar";
+export { CheckoutSidebar } from "./checkout/checkout_sidebar";
+export { CheckoutForm } from "./checkout/checkout_form";
