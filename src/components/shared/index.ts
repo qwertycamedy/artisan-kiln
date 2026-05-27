@@ -8,3 +8,5 @@ export { DesignGrid } from "./design_tool/design_grid";
 export { TilePalette } from "./design_tool/tile_palette";
 export { CheckoutSidebar } from "./checkout/checkout_sidebar";
 export { CheckoutForm } from "./checkout/checkout_form";
+export { LoadingButton } from "./checkout/loading_button";
+export { SuccessModal } from "./checkout/success_modal";

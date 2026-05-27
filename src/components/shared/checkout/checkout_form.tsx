@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CreditCard, Landmark } from "lucide-react";
 import { FaPaypal, FaApple } from "react-icons/fa";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setPaymentMethod, updateField } from "@/store/features/checkout";
-import { RootState } from "@/store";
+import { checkoutSchema, CheckoutSchema } from "@/utils";
+import { FormInput } from "@/components/ui";
+import { SuccessModal, LoadingButton } from "@/components/shared";
 
 const paymentMethods = [
   {
@@ -33,188 +36,189 @@ const paymentMethods = [
 ];
 
 export const CheckoutForm = () => {
-  const dispatch = useAppDispatch();
-  const form = useAppSelector((state: RootState) => state.checkout);
+  const [loading, setLoading] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const {
+    control,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CheckoutSchema>({
+    resolver: zodResolver(checkoutSchema),
 
-  const update = (field: string, value: string) => {
-    dispatch(
-      updateField({
-        field: field as never,
-        value,
-      }),
-    );
+    defaultValues: {
+      customerName: "",
+      phone: "",
+      email: "",
+      shippingAddress: "",
+      projectNotes: "",
+
+      paymentMethod: "credit-card",
+
+      cardNumber: "",
+      expiration: "",
+      cvv: "",
+    },
+  });
+
+  const paymentMethod = watch("paymentMethod");
+
+  const onSubmit = async (data: CheckoutSchema) => {
+    try {
+      setLoading(true);
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      console.log(data);
+
+      setSuccessOpen(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-4">
-        <Input
-          label="Full Name"
-          value={form.customerName}
-          onChange={(value) => update("customerName", value)}
-          required
-        />
-
-        <Input
-          label="Phone"
-          value={form.phone}
-          onChange={(value) => update("phone", value)}
-        />
-
-        <Input
-          label="Email"
-          value={form.email}
-          onChange={(value) => update("email", value)}
-          required
-          type="email"
-        />
-
-        <Input
-          label="Shipping Address"
-          value={form.shippingAddress}
-          onChange={(value) => update("shippingAddress", value)}
-          required
-        />
-      </div>
-
-      <div>
-        <h3 className="mb-4 font-heading text-[26px] uppercase">
-          Payment Method
-        </h3>
-
-        <div className="grid grid-cols-2 gap-3">
-          {paymentMethods.map((method) => {
-            const Icon = method.icon;
-
-            const active = form.paymentMethod === method.id;
-
-            return (
-              <button
-                key={method.id}
-                onClick={() => dispatch(setPaymentMethod(method.id as never))}
-                className={`
-                  flex
-                  items-center
-                  gap-3
-                  border-2
-                  border-border
-                  px-4
-                  py-4
-                  transition
-
-                  ${active ? "bg-navy text-white" : "bg-white"}
-                `}
-              >
-                <Icon size={20} />
-
-                <span className="font-heading text-lg uppercase">
-                  {method.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {form.paymentMethod === "credit-card" && (
+    <>
+      <SuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
+        
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-4">
-          <Input
-            label="Card Number"
-            value={form.cardNumber}
-            onChange={(value) => update("cardNumber", value)}
-            placeholder="1234 5678 9012 3456"
+          <FormInput
+            control={control}
+            name="customerName"
+            label="Full Name"
+            error={errors.customerName?.message}
           />
 
-          <div className="grid grid-cols-2 gap-4">
-            <Input
-              label="Expiration"
-              value={form.expiration}
-              onChange={(value) => update("expiration", value)}
-              placeholder="MM/YY"
-            />
+          <FormInput
+            control={control}
+            name="phone"
+            label="Phone"
+            error={errors.phone?.message}
+          />
 
-            <Input
-              label="CVV"
-              value={form.cvv}
-              onChange={(value) => update("cvv", value)}
-              placeholder="123"
-            />
-          </div>
+          <FormInput
+            control={control}
+            name="email"
+            label="Email"
+            type="email"
+            error={errors.email?.message}
+          />
+
+          <FormInput
+            control={control}
+            name="shippingAddress"
+            label="Shipping Address"
+            error={errors.shippingAddress?.message}
+          />
         </div>
-      )}
 
-      <div>
-        <label className="mb-2 block font-heading text-[22px] uppercase">
-          Project Notes
-        </label>
+        <div>
+          <h3 className="mb-4 font-heading text-[26px] uppercase">
+            Payment Method
+          </h3>
 
-        <textarea
-          rows={5}
-          value={form.projectNotes}
-          onChange={(e) => update("projectNotes", e.target.value)}
-          className="
-            w-full
-            resize-none
-            border-2
-            border-border
-            bg-white
-            p-4
-            text-sm
-            outline-none
-          "
-          placeholder="Additional information..."
-        />
-      </div>
-    </div>
-  );
-};
+          <Controller
+            control={control}
+            name="paymentMethod"
+            render={({ field }) => (
+              <div className="grid grid-cols-2 gap-3">
+                {paymentMethods.map((method) => {
+                  const Icon = method.icon;
 
-type InputProps = {
-  label: string;
+                  const active = field.value === method.id;
 
-  value: string;
+                  return (
+                    <button
+                      type="button"
+                      key={method.id}
+                      onClick={() => field.onChange(method.id)}
+                      className={`
+                        flex
+                        items-center
+                        gap-3
+                        border-2
+                        border-border
+                        px-4
+                        py-4
+                        transition
 
-  onChange: (value: string) => void;
+                        ${active ? "bg-navy text-white" : "bg-white"}
+                      `}
+                    >
+                      <Icon size={20} />
 
-  placeholder?: string;
+                      <span className="font-heading text-lg uppercase">
+                        {method.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          />
+        </div>
 
-  type?: string;
+        {paymentMethod === "credit-card" && (
+          <div className="space-y-4">
+            <FormInput
+              control={control}
+              name="cardNumber"
+              label="Card Number"
+              placeholder="1234 5678 9012 3456"
+              error={errors.cardNumber?.message}
+            />
 
-  required?: boolean;
-};
+            <div className="grid grid-cols-2 gap-4">
+              <FormInput
+                control={control}
+                name="expiration"
+                label="Expiration"
+                placeholder="MM/YY"
+                error={errors.expiration?.message}
+              />
 
-const Input = ({
-  label,
-  value,
-  onChange,
-  placeholder,
-  type = "text",
-  required,
-}: InputProps) => {
-  return (
-    <div>
-      <label className="mb-2 block font-heading text-[22px] uppercase">
-        {label}
+              <FormInput
+                control={control}
+                name="cvv"
+                label="CVV"
+                placeholder="123"
+                error={errors.cvv?.message}
+              />
+            </div>
+          </div>
+        )}
 
-        {required && <span className="ml-1 text-[#D2875C]">*</span>}
-      </label>
+        <div>
+          <label className="mb-2 block font-heading text-[22px] uppercase">
+            Project Notes
+          </label>
 
-      <input
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
-        className="
-          h-14
-          w-full
-          border-2
-          border-border
-          bg-white
-          px-4
-          text-sm
-          outline-none
-        "
-      />
-    </div>
+          <Controller
+            control={control}
+            name="projectNotes"
+            render={({ field }) => (
+              <textarea
+                rows={5}
+                {...field}
+                className="
+                w-full
+                resize-none
+                border-2
+                border-border
+                bg-white
+                p-4
+                text-sm
+              "
+              />
+            )}
+          />
+        </div>
+
+        <LoadingButton type="submit" loading={loading}>
+          Place Secure Order
+        </LoadingButton>
+      </form>
+    </>
   );
 };
