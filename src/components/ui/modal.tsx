@@ -66,7 +66,7 @@ export const Modal = ({ open, onClose, title, children }: Props) => {
             "
           >
             <div className="flex items-center justify-between border-b-2 border-border px-6 py-4">
-              <h2 className="font-heading text-[34px] uppercase leading-none">
+              <h2 className="font-heading text-[24px] uppercase leading-none">
                 {title}
               </h2>
 
@@ -74,14 +74,14 @@ export const Modal = ({ open, onClose, title, children }: Props) => {
                 onClick={onClose}
                 className="
                   flex
-                  h-11
-                  w-11
+                  h-7
+                  w-7
                   items-center
                   justify-center
                   border-2
                   border-border
                   bg-white
-                  text-2xl
+                  text-xl
                 "
               >
                 ×

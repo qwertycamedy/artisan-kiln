@@ -11,7 +11,7 @@ export const Panel = ({ title, children, className }: Props) => {
     <section className={cn("border-2 border-border bg-[#F7F1E7]", className)}>
       {title && (
         <div className="border-b-2 border-border px-4 py-3">
-          <h2 className="font-heading text-[28px] uppercase leading-none">
+          <h2 className="font-heading text-[20px] uppercase leading-none">
             {title}
           </h2>
         </div>

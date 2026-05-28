@@ -26,7 +26,7 @@ export default function RootLayout({
       >
         <StoreProvider>
           <Header />
-          <main className="flex flex-1 flex-col p-4 md:p-8">{children}</main>
+          <main className="flex flex-1 flex-col">{children}</main>
           <Footer />
         </StoreProvider>
       </body>

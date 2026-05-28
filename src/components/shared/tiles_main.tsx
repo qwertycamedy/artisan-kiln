@@ -6,14 +6,8 @@ type Props = {
 
 export const TilesMain = ({ left, center, right }: Props) => {
   return (
-    <section className="mx-auto w-full max-w-360 px-4 py-6 md:px-8 md:py-8">
-      <div className="flex flex-col gap-6 xl:hidden">
-        {left}
-        {center}
-        {right}
-      </div>
-
-      <div className="hidden grid-cols-[380px_1fr_320px] gap-6 xl:grid">
+    <section className="mx-auto w-full px-6 py-6 flex justify-center">
+      <div className="flex flex-col xl:flex-row xl:items-start gap-6">
         {left}
         {center}
         {right}

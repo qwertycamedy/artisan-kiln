@@ -30,9 +30,9 @@ export const DesignTool = () => {
   };
 
   return (
-    <Panel>
+    <Panel className="min-w-[35%]">
       <div className="mb-6 text-center">
-        <h2 className="font-heading text-[34px] uppercase leading-none">
+        <h2 className="font-heading text-[24px] uppercase leading-none">
           Visualize Your Order
         </h2>
 
@@ -40,11 +40,11 @@ export const DesignTool = () => {
       </div>
 
       <DndContext id={dndId} onDragEnd={handleDragEnd}>
-        <div className="flex gap-6">
+        <div className="flex flex-col md:flex-row gap-6">
           <DesignGrid />
 
           <div>
-            <h3 className="mb-4 font-heading text-[28px] uppercase leading-none">
+            <h3 className="mb-4 font-heading text-[20px] uppercase leading-none">
               Design Palette
             </h3>
 

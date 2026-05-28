@@ -28,7 +28,7 @@ export const AddTilesModal = ({ open, onClose }: Props) => {
 
   return (
     <Modal open={open} onClose={onClose} title="Add New Tile">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 grid-cols-2 xl:grid-cols-3">
         {initialTiles.map((tile) => (
           <motion.button
             key={tile.id}
@@ -48,7 +48,7 @@ export const AddTilesModal = ({ open, onClose }: Props) => {
               transition
             "
           >
-            <div className="relative aspect-square border-b-2 border-border">
+            <div className="relative w-full h-10 border-b-2 border-border">
               <Image
                 src={tile.pattern}
                 alt={tile.name}
@@ -57,33 +57,33 @@ export const AddTilesModal = ({ open, onClose }: Props) => {
               />
             </div>
 
-            <div className="space-y-3 p-4">
+            <div className="space-y-1 p-4">
               <div>
-                <h3 className="font-heading text-[28px] uppercase leading-none">
+                <h3 className="font-heading text-[14px] uppercase leading-none">
                   {tile.name}
                 </h3>
 
-                <p className="mt-2 text-sm text-black/70">
+                <p className="mt-2 text-xs text-black/70">
                   Handmade ceramic tile collection.
                 </p>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="font-heading text-[30px] uppercase leading-none">
+                <span className="font-heading text-[13px] uppercase leading-none">
                   ${tile.price}
                 </span>
 
                 <div
                   className="
                     flex
-                    h-11
-                    w-11
+                    h-5
+                    w-5
                     items-center
                     justify-center
                     border-2
                     border-border
                     bg-[#7FA38A]
-                    text-2xl
+                    text-lg
                   "
                 >
                   +

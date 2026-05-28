@@ -16,15 +16,15 @@ export const SuccessModal = ({ open, onClose }: Props) => {
         <div
           className="
                   flex
-                  h-20
-                  w-20
+                  h-16
+                  w-16
                   items-center
                   justify-center
                   rounded-full
                   border-2
                   border-border
                   bg-[#7FA38A]
-                  text-4xl
+                  text-3xl
                 "
         >
           ✓
@@ -35,7 +35,7 @@ export const SuccessModal = ({ open, onClose }: Props) => {
         className="
                 text-center
                 font-heading
-                text-[42px]
+                text-[24px]
                 uppercase
                 leading-none
               "
@@ -49,7 +49,7 @@ export const SuccessModal = ({ open, onClose }: Props) => {
                 mt-4
                 max-w-90
                 text-center
-                text-sm
+                text-xs
                 leading-relaxed
               "
       >
@@ -64,10 +64,10 @@ export const SuccessModal = ({ open, onClose }: Props) => {
                   border-2
                   border-border
                   bg-navy
-                  px-8
-                  py-4
+                  px-4
+                  py-2
                   font-heading
-                  text-[24px]
+                  text-[16px]
                   uppercase
                   text-white
                   shadow-panel

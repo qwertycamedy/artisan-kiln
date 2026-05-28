@@ -26,7 +26,7 @@ export const FormInput = <T extends FieldValues>({
 }: Props<T>) => {
   return (
     <div>
-      <label className="mb-2 block font-heading text-[22px] uppercase">
+      <label className="mb-2 block font-heading text-[14px] uppercase">
         {label}
       </label>
 
@@ -39,12 +39,12 @@ export const FormInput = <T extends FieldValues>({
             type={type}
             placeholder={placeholder}
             className={`
-              h-14
+              h-8
               w-full
               border-2
               bg-white
-              px-4
-              text-sm
+              px-2
+              text-xs
               outline-none
 
               ${error ? "border-[#D2875C]" : "border-border"}

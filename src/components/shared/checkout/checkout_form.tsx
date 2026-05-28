@@ -10,7 +10,12 @@ import { FormInput } from "@/components/ui";
 import { SuccessModal, LoadingButton } from "@/components/shared";
 import { resetCart } from "@/store/features/cart";
 import { resetGrid } from "@/store/features/design";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import {
+  selectGrandTotal,
+  selectShipping,
+  selectSubtotal,
+} from "@/store/selectors/cart";
 
 const paymentMethods = [
   {
@@ -40,6 +45,9 @@ const paymentMethods = [
 
 export const CheckoutForm = () => {
   const dispatch = useAppDispatch();
+  const subtotal = useAppSelector(selectSubtotal);
+  const shipping = useAppSelector(selectShipping);
+  const grandTotal = useAppSelector(selectGrandTotal);
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
   const {
@@ -71,13 +79,13 @@ export const CheckoutForm = () => {
   const onSubmit = async (data: CheckoutSchema) => {
     try {
       setLoading(true);
-      
+
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       dispatch(resetCart());
       dispatch(resetGrid());
       reset();
-      
+
       setSuccessOpen(true);
     } finally {
       setLoading(false);
@@ -88,8 +96,8 @@ export const CheckoutForm = () => {
     <>
       <SuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+        <div className="space-y-2">
           <FormInput
             control={control}
             name="customerName"
@@ -120,8 +128,34 @@ export const CheckoutForm = () => {
           />
         </div>
 
+        <div className="border-t-2 border-b-2 border-border py-5">
+          <div className="flex items-center justify-between">
+            <span className="font-heading text-[16px] uppercase">Subtotal</span>
+
+            <span className="font-heading text-[16px] uppercase">
+              ${subtotal.toFixed(2)}
+            </span>
+          </div>
+
+          <div className="mt-3 flex items-center justify-between">
+            <span className="font-heading text-[16px] uppercase">Shipping</span>
+
+            <span className="font-heading text-[16px] uppercase">
+              ${shipping.toFixed(2)}
+            </span>
+          </div>
+
+          <div className="mt-4 flex items-center justify-between border-t-2 border-border pt-4">
+            <span className="font-heading text-[16px] uppercase">Total</span>
+
+            <span className="font-heading text-[16px] uppercase">
+              ${grandTotal.toFixed(2)}
+            </span>
+          </div>
+        </div>
+
         <div>
-          <h3 className="mb-4 font-heading text-[26px] uppercase">
+          <h3 className="mb-4 font-heading text-14px] uppercase">
             Payment Method
           </h3>
 
@@ -155,7 +189,7 @@ export const CheckoutForm = () => {
                     >
                       <Icon size={20} />
 
-                      <span className="font-heading text-lg uppercase">
+                      <span className="font-heading text-xs uppercase">
                         {method.label}
                       </span>
                     </button>
@@ -197,7 +231,7 @@ export const CheckoutForm = () => {
         )}
 
         <div>
-          <label className="mb-2 block font-heading text-[22px] uppercase">
+          <label className="mb-2 block font-heading text-[14px] uppercase">
             Project Notes
           </label>
 
@@ -214,8 +248,8 @@ export const CheckoutForm = () => {
                 border-2
                 border-border
                 bg-white
-                p-4
-                text-sm
+                p-2
+                text-xs
               "
               />
             )}

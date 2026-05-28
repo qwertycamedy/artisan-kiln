@@ -35,9 +35,9 @@ export const LoadingButton = ({
         border-2
         border-border
         bg-navy
-        py-4
+        py-2
         font-heading
-        text-[30px]
+        text-[20px]
         uppercase
         text-white
         shadow-panel

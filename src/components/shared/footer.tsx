@@ -18,7 +18,7 @@ export const Footer = () => {
               href="/"
               className="
                 font-heading
-                text-[20px]
+                text-[14px]
                 uppercase
                 leading-none
                 transition-opacity
@@ -33,11 +33,11 @@ export const Footer = () => {
         <div className="my-6 h-0.5 w-full max-w-130 bg-border" />
 
         <div className="text-center">
-          <p className="font-heading text-[22px] uppercase leading-none">
+          <p className="font-heading text-[14px] uppercase leading-none">
             © 2026 The Artisan Kiln
           </p>
 
-          <p className="mt-2 text-sm text-black/60">
+          <p className="mt-2 text-xs text-black/60">
             Handmade ceramic tile studio. Crafted with precision and artistry.
           </p>
         </div>
