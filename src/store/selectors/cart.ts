@@ -20,3 +20,14 @@ export const selectGrandTotal = (state: RootState) => {
 
   return subtotal + shipping;
 };
+
+export const selectCartQuantity = (
+  state: RootState
+) => {
+  return state.cart.items.reduce(
+    (total, item) => {
+      return total + item.quantity;
+    },
+    0
+  );
+};

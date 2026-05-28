@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ShoppingCart, User } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { selectCartQuantity } from "@/store/selectors/cart";
+import { highlightCart } from "@/store/features/cart";
 
 const navItems = [
   "Home",
@@ -12,6 +17,10 @@ const navItems = [
 ];
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
+
+  const quantity = useAppSelector(selectCartQuantity);
+
   return (
     <header className="border-b-2 border-border bg-cream">
       <div className="mx-auto flex h-18 max-w-360 items-center justify-between px-4 md:px-8">
@@ -54,11 +63,32 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button className="relative flex items-center justify-center">
+          <button
+            onClick={() => dispatch(highlightCart())}
+            className="relative flex items-center justify-center"
+          >
             <ShoppingCart className="h-8 w-8" strokeWidth={2.2} />
 
-            <span className="absolute -right-2 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-border bg-yellow-300 px-1 text-[11px] font-bold leading-none">
-              3
+            <span
+              className="
+                absolute
+                -right-2
+                -top-1
+                flex
+                min-w-5.5
+                items-center
+                justify-center
+                rounded-full
+                border-2
+                border-border
+                bg-gold
+                px-1
+                text-[11px]
+                font-bold
+                leading-none
+              "
+            >
+              {quantity}
             </span>
           </button>
 

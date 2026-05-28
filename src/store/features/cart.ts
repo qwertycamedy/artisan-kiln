@@ -6,25 +6,28 @@ import { initialTiles } from "@/data/tiles";
 
 interface CartState {
   items: CartItem[];
+  cartHighlighted: boolean;
 }
 
 const initialState: CartState = {
   items: [
     {
       tile: initialTiles[0],
-      quantity: 150,
+      quantity: 10,
     },
 
     {
       tile: initialTiles[1],
-      quantity: 75,
+      quantity: 22,
     },
 
     {
       tile: initialTiles[2],
-      quantity: 200,
+      quantity: 4,
     },
   ],
+
+  cartHighlighted: false,
 };
 
 export const cartSlice = createSlice({
@@ -79,14 +82,27 @@ export const cartSlice = createSlice({
         (item) => item.tile.id !== action.payload,
       );
     },
-
     resetCart: (state) => {
       state.items = [];
+    },
+    highlightCart: (state) => {
+      state.cartHighlighted = true;
+    },
+
+    clearCartHighlight: (state) => {
+      state.cartHighlighted = false;
     },
   },
 });
 
-export const { addTileToCart, increaseQuantity, decreaseQuantity, removeItem, resetCart } =
-  cartSlice.actions;
+export const {
+  addTileToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  resetCart,
+  highlightCart,
+  clearCartHighlight,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
