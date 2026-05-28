@@ -94,17 +94,22 @@ export const CartTable = () => {
               <div className="border-r-2 border-border p-3">
                 <div className="flex h-full items-center justify-center gap-3">
                   <button
+                    data-testid={`decrease-${item.tile.id}`}
                     onClick={() => dispatch(decreaseQuantity(item.tile.id))}
                     className="flex h-9 w-9 items-center justify-center border-2 border-border bg-white"
                   >
                     <Minus size={18} />
                   </button>
 
-                  <span className="min-w-13 text-center font-heading text-[30px] leading-none">
+                  <span
+                    data-testid={`quantity-${item.tile.id}`}
+                    className="min-w-13 text-center font-heading text-[30px] leading-none"
+                  >
                     {item.quantity}
                   </span>
 
                   <button
+                    data-testid={`increase-${item.tile.id}`}
                     onClick={() => dispatch(increaseQuantity(item.tile.id))}
                     className="flex h-9 w-9 items-center justify-center border-2 border-border bg-[#7FA38A]"
                   >
@@ -124,6 +129,7 @@ export const CartTable = () => {
               <div className="p-3">
                 <div className="flex h-full items-center justify-center">
                   <button
+                    data-testid={`remove-${item.tile.id}`}
                     onClick={() => dispatch(removeItem(item.tile.id))}
                     className="flex h-12 w-12 items-center justify-center border-2 border-border bg-[#D2875C]"
                   >
