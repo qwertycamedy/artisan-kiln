@@ -2,7 +2,41 @@
 
 Interactive ceramic tile ordering experience built with Next.js, TypeScript, Redux Toolkit and Tailwind CSS.
 
-## Overview
+## Demo
+
+https://artisan-kiln.vercel.app/
+
+---
+
+# Getting Started
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Run development server
+
+```bash
+npm run dev
+```
+
+## Run tests
+
+```bash
+npm run test
+```
+
+## Run tests in watch mode
+
+```bash
+npm run test:watch
+```
+
+---
+
+# Overview
 
 The Artisan Kiln is a responsive ecommerce-style application for configuring and ordering ceramic tiles.
 
@@ -123,34 +157,6 @@ src/
 │   ├── integration/
 │   └── unit/
 └── types/
-```
-
----
-
-# Getting Started
-
-## Install dependencies
-
-```bash
-npm install
-```
-
-## Run development server
-
-```bash
-npm run dev
-```
-
-## Run tests
-
-```bash
-npm run test
-```
-
-## Run tests in watch mode
-
-```bash
-npm run test:watch
 ```
 
 ---
