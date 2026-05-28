@@ -1,6 +1,13 @@
 "use client";
 
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragEndEvent,
+  TouchSensor,
+  MouseSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { Panel } from "@/components/ui";
 import { placeTile } from "@/store/features/design";
 import { useAppDispatch } from "@/hooks";
@@ -10,6 +17,16 @@ import { useId } from "react";
 export const DesignTool = () => {
   const dispatch = useAppDispatch();
   const dndId = useId();
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 120,
+        tolerance: 8,
+      },
+    }),
+  );
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -39,7 +56,7 @@ export const DesignTool = () => {
         <p className="mt-2 text-sm">Drag tiles into the grid.</p>
       </div>
 
-      <DndContext id={dndId} onDragEnd={handleDragEnd}>
+      <DndContext id={dndId} sensors={sensors} onDragEnd={handleDragEnd}>
         <div className="flex flex-col md:flex-row gap-6">
           <DesignGrid />
 

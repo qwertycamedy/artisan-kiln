@@ -44,6 +44,9 @@ const GridCell = ({ row, col, tileId }: CellProps) => {
 
         ${isOver ? "bg-[#D8E7DC]" : "bg-[#F7F1E7]"}
       `}
+      style={{
+        touchAction: "none",
+      }}
     >
       {tile && (
         <motion.div

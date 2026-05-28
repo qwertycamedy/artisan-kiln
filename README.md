@@ -1,36 +1,188 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Artisan Kiln
 
-## Getting Started
+Interactive ceramic tile ordering experience built with Next.js, TypeScript, Redux Toolkit and Tailwind CSS.
 
-First, run the development server:
+## Overview
+
+The Artisan Kiln is a responsive ecommerce-style application for configuring and ordering ceramic tiles.
+
+The project includes:
+
+* Shopping cart
+* Interactive 6x6 design visualizer
+* Checkout flow
+* Form validation
+* Redux state management
+* Drag & drop interactions
+* Responsive layout
+* Unit and integration tests
+
+---
+
+# Tech Stack
+
+## Core
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Redux Toolkit
+
+## Forms & Validation
+
+* React Hook Form
+* Zod
+
+## Interactions
+
+* Framer Motion
+* dnd-kit
+
+## Testing
+
+* Vitest
+* React Testing Library
+
+---
+
+# Features
+
+## Shopping Cart
+
+* Add/remove tiles
+* Quantity controls
+* Dynamic totals
+* Shipping calculation
+* Cart highlight interaction from header
+
+## Design Tool
+
+* Interactive 6x6 grid
+* Drag & drop tile placement
+* Tile palette
+* Tile removal
+
+## Checkout
+
+* Multiple payment methods
+* Credit card validation
+* Responsive form
+* Loading states
+* Success modal
+* Automatic state reset after successful order
+
+## Responsive Design
+
+* Mobile-first layout
+* Adaptive typography
+* Scroll-safe table behavior
+* Flexible panels
+
+---
+
+# Business Logic
+
+## Shipping
+
+* Free shipping for orders above $500
+* Otherwise shipping cost is $25
+
+## Totals
+
+Subtotal:
+
+```txt
+sum(quantity × unit price)
+```
+
+Grand Total:
+
+```txt
+subtotal + shipping
+```
+
+---
+
+# Project Structure
+
+```txt
+src/
+├── app/
+├── components/
+│   ├── cart/
+│   ├── checkout/
+│   ├── design-tool/
+│   ├── layout/
+│   └── ui/
+├── data/
+├── lib/
+├── store/
+│   └── features/
+├── test/
+├── tests/
+│   ├── integration/
+│   └── unit/
+└── types/
+```
+
+---
+
+# Getting Started
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run tests
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run tests in watch mode
 
-## Learn More
+```bash
+npm run test:watch
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project includes:
 
-## Deploy on Vercel
+## Unit Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Redux reducers
+* Selectors
+* Validation schema
+* Grid logic
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Integration Tests
+
+* Cart interactions
+* Checkout validation
+* Payment switching
+* Modal behavior
+
+---
+
+# Notes
+
+This project was created as a frontend technical assessment focused on:
+
+* Component architecture
+* State management
+* Responsive UI
+* UX interactions
+* Typed validation
+* Frontend testing
+* Maintainable code structure

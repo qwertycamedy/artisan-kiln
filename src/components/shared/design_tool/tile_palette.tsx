@@ -39,7 +39,10 @@ const TileCard = ({ id, image, name, selected, onClick }: TileCardProps) => {
         scale: 0.96,
       }}
       ref={setNodeRef}
-      style={style}
+      style={{
+        touchAction: "none",
+        ...style,
+      }}
       {...listeners}
       {...attributes}
       onClick={onClick}
