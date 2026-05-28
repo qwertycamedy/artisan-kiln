@@ -49,6 +49,8 @@ const TileCard = ({ id, image, name, selected, onClick }: TileCardProps) => {
         overflow-hidden
         border-2
         border-border
+        h-16
+        w-16
 
         ${selected ? "bg-[#D8E7DC]" : "bg-white"}
       `}
@@ -72,7 +74,7 @@ export const TilePalette = () => {
   );
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="flex flex-wrap gap-3">
       {initialTiles.map((tile) => (
         <TileCard
           key={tile.id}

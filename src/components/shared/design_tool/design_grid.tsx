@@ -77,7 +77,7 @@ export const DesignGrid = () => {
   const cells = useAppSelector((state: RootState) => state.design.cells);
 
   return (
-    <div className="grid grid-cols-6 overflow-hidden border-2 border-border">
+    <div className="grid grid-cols-6 overflow-hidden border-2 border-border w-full h-max">
       {cells.map((cell) => (
         <GridCell
           key={`${cell.row}-${cell.col}`}

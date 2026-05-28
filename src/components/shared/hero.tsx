@@ -9,7 +9,7 @@ export const Hero = () => {
   return (
     <section className="relative overflow-hidden border-b-2 border-border bg-cream">
       <div className="absolute left-0 top-0 hidden md:block">
-        <div className="h-28 w-28 border-r-2 border-b-2 border-border bg-[#D2875C]" />
+        <div className="h-28 w-28 border-2 border-border bg-[#D2875C]" />
       </div>
 
       <div className="mx-auto flex max-w-360 flex-col items-center px-4 py-10 text-center md:px-8 md:py-14">
@@ -59,7 +59,7 @@ export const Hero = () => {
       </div>
 
       <div className="absolute right-0 top-0 hidden md:block">
-        <div className="h-28 w-28 border-l-2 border-b-2 border-border bg-[#D2875C]" />
+        <div className="h-28 w-28 border-2 border-border bg-[#D2875C]" />
       </div>
     </section>
   );

@@ -40,7 +40,7 @@ export const DesignTool = () => {
       </div>
 
       <DndContext id={dndId} onDragEnd={handleDragEnd}>
-        <div className="grid gap-6 xl:grid-cols-[1fr_180px]">
+        <div className="flex gap-6">
           <DesignGrid />
 
           <div>

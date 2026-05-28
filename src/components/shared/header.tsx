@@ -95,10 +95,6 @@ export const Header = () => {
           <button className="hidden h-11 w-11 items-center justify-center rounded-full border-2 border-border bg-[#6373A4] md:flex">
             <User className="h-6 w-6 text-white" strokeWidth={2.2} />
           </button>
-
-          <button className="rounded-xl border-2 border-border bg-navy px-4 py-2 font-heading text-lg uppercase leading-none text-white shadow-panel transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">
-            Log In
-          </button>
         </div>
       </div>
     </header>
